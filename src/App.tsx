@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-    <h1>Calculadora de Calorías</h1>
+    <h1 className="text-3xl font-black">Calculadora de Calorías</h1>
     </>
   )
 }
