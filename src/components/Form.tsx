@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { categories } from "../data/categories";
 import { Activity } from "../types";
 
@@ -9,23 +9,36 @@ export default function Form() {
     calories: 0,
   });
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
-    const isNumberField = ["category", "calories"].includes(e.target.id)
+  const handleChange = (
+    e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>
+  ) => {
+    const isNumberField = ["category", "calories"].includes(e.target.id);
     setActivity({
-        ...activity,
-        [e.target.id]: isNumberField ? +e.target.value : e.target.value
-    })
-  }
+      ...activity,
+      [e.target.id]: isNumberField ? +e.target.value : e.target.value,
+    });
+  };
 
   const isValidActivity = () => {
-    const { name, calories } = activity
-    console.log( name.trim() !== "" && calories > 0 )
-    return name.trim() !== "" && calories > 0
+    const { name, calories } = activity;
+    console.log(name.trim() !== "" && calories > 0);
+    return name.trim() !== "" && calories > 0;
+  };
+
+  const hadleSubmit  = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    console.log("Submit...")
 
   }
 
+   
+
   return (
-    <form className="space-y-5 bg-white shadow p-10 rounded-lg">
+    <form 
+    className="space-y-5 bg-white shadow p-10 rounded-lg" 
+    onSubmit={hadleSubmit}
+    >
       <div className="grid grid-cols-1 gap-3">
         <label htmlFor="category" className="font-bold">
           Categoría:
@@ -54,7 +67,6 @@ export default function Form() {
           placeholder="Ej. Comida, Jugo de Naranja, Ensalada, Ejercicio, Pesas, Bicicleta"
           value={activity.name}
           onChange={handleChange}
-         
         />
       </div>
 
