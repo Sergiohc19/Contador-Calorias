@@ -85,8 +85,7 @@ export default function Form() {
       </div>
       <input
         type="submit"
-        className="bg-gray-500 text-black w-full p-2 font-bold uppercase hover:text-white cursor-pointer transition-all duration-1000
-         hover:bg-black border  disabled:opacity-25"
+        className="bg-black border  disabled:opacity-25 text-white text-xl font-extrabold w-full p-2 font-bold uppercase hover:bg-lime-400 cursor-pointer transition-all duration-1000"
         value={activity.category === 1 ? "Guardar Comida" : "Guardar Ejercicio"}
         disabled={!isValidActivity()}
       />
