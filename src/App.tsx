@@ -10,13 +10,18 @@ function App() {
           </h1>
         </div>
       </header>
-     
-<section className="imagin py-20 px-5 bg-cover bg-center h-screen" style={{ backgroundImage: 'url("https://img.freepik.com/foto-gratis/verduras-frescas-pesas-sobre-fondo-madera_23-2147882039.jpg?t=st=1736107585~exp=1736111185~hmac=b0f25193320384a85c962091395e469ad55a48ebac979c28811efd2e2dd58b93&w=1380")' }}>
-  <div className="max-w-4xl mx-auto">
-    <Form />
-  </div>
-</section>
 
+      <section
+        className="imagin py-20 px-5 bg-cover bg-center h-screen"
+        style={{
+          backgroundImage:
+            'url("https://img.freepik.com/foto-gratis/verduras-frescas-pesas-sobre-fondo-madera_23-2147882039.jpg?t=st=1736107585~exp=1736111185~hmac=b0f25193320384a85c962091395e469ad55a48ebac979c28811efd2e2dd58b93&w=1380")',
+        }}
+      >
+        <div className="max-w-4xl mx-auto">
+          <Form />
+        </div>
+      </section>
     </>
   );
 }
