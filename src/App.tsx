@@ -2,6 +2,8 @@ import { useReducer } from "react";
 import Form from "./components/Form";
 import { activityReducer, inicialState } from "./reducers/activityReducer";
 import ActivityList from "./components/ActivityList";
+
+
 function App() {
 
     const [state, dispatch] = useReducer(activityReducer, inicialState)
@@ -27,6 +29,7 @@ function App() {
         <div className="max-w-4xl mx-auto">
           <Form 
             dispatch={dispatch}
+            state={state}
           />
         </div>
       </section>
