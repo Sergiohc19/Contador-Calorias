@@ -1,19 +1,20 @@
 import { useState, ChangeEvent, FormEvent, Dispatch } from "react";
 import { categories } from "../data/categories";
 import type { Activity } from "../types";
-import { ActivityActions } from "../reducers/activityReducer";
-
+import { ActivityActions, inicialState } from "../reducers/activityReducer";
 
 type FormProps = {
-  dispatch : Dispatch<ActivityActions>
-}
+  dispatch: Dispatch<ActivityActions>;
+};
 
-export default function Form({dispatch} : FormProps) {
-  const [activity, setActivity] = useState<Activity>({
-    category: 1,
-    name: "",
-    calories: 0,
-  });
+const initialState: Activity = {
+  category: 1,
+  name: "",
+  calories: 0,
+};
+
+export default function Form({ dispatch }: FormProps) {
+  const [activity, setActivity] = useState<Activity>(initialState);
 
   const handleChange = (
     e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>
@@ -30,20 +31,20 @@ export default function Form({dispatch} : FormProps) {
     return name.trim() !== "" && calories > 0;
   };
 
-  const hadleSubmit  = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
+  const hadleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
     dispatch({
-      type : "save-activity",
-      payload : { newActivity : activity }
-    })
-  }
+      type: "save-activity",
+      payload: { newActivity: activity },
+    });
+    setActivity(initialState);
+  };
 
   return (
-    <form 
-    className="space-y-5 bg-white shadow p-10 rounded-lg" 
-    onSubmit={hadleSubmit}
+    <form
+      className="space-y-5 bg-white shadow p-10 rounded-lg"
+      onSubmit={hadleSubmit}
     >
       <div className="grid grid-cols-1 gap-3">
         <label htmlFor="category" className="font-bold">
