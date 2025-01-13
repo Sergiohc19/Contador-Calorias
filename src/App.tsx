@@ -3,6 +3,7 @@ import Form from "./components/Form";
 import { activityReducer, inicialState } from "./reducers/activityReducer";
 import ActivityList from "./components/ActivityList";
 import { PowerIcon } from "@heroicons/react/24/outline";
+import CalorieTracker from "./components/CalorieTracker";
 
 function App() {
   const [state, dispatch] = useReducer(activityReducer, inicialState);
@@ -38,12 +39,21 @@ function App() {
       </header>
 
       <section
-        className=" py-20 px-5 bg-contain bg-center bg-slate-800"
+        className=" py-20 px-5 bg-contain bg-center bg-lime-500"
        
       >
         <div className="max-w-4xl mx-auto">
           <Form dispatch={dispatch} state={state} />
         </div>
+      </section>
+
+      <section className="bg-gray-800 py-10">
+        <div className="max-w-4xl mx-auto">
+          <CalorieTracker 
+          activities={state.activities}
+          />
+        </div>
+
       </section>
 
       <section className="p-10 mx-auto max-w-4xl">
