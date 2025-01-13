@@ -11,20 +11,18 @@ export type ActivityState = {
     activeID: Activity["id"];
 };
 
-
 const localStorageActivities = (): Activity[] => {
     const activities = localStorage.getItem("activities")
     return activities ? JSON.parse(activities) : []
-
 }
 
-export const inicialState: ActivityState = {
+export const initialState: ActivityState = {
     activities: localStorageActivities(),
     activeID: "",
 };
 
 export const activityReducer = (
-    state: ActivityState = inicialState,
+    state: ActivityState = initialState,
     action: ActivityActions
 ) => {
     if (action.type === "save-activity") {

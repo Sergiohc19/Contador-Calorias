@@ -109,7 +109,7 @@ export default function Form({ dispatch, state }: FormProps) {
       </div>
       <input
         type="submit"
-        className="bg-black border  disabled:opacity-25 text-white text-xl font-extrabold w-full p-2 font-bold uppercase hover:bg-lime-400 cursor-pointer transition-all duration-1000"
+        className="bg-black border  disabled:opacity-25 text-white text-xl  w-full p-2 font-bold uppercase hover:bg-green-700 cursor-pointer transition-all duration-1000"
         value={activity.category === 1 ? "Guardar Comida" : "Guardar Ejercicio"}
         disabled={!isValidActivity()}
       />
