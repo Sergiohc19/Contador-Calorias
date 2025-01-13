@@ -1,17 +1,26 @@
 import { Activity } from "../types";
 
 export type ActivityActions =
-    { type: "save-activity"; payload: { newActivity: Activity } } |
-    { type: "set-activeId"; payload: { id: Activity["id"] } } |
-    { type: "delete-activity"; payload: { id: Activity["id"] } }
+    | { type: "save-activity"; payload: { newActivity: Activity } }
+    | { type: "set-activeId"; payload: { id: Activity["id"] } }
+    | { type: "delete-activity"; payload: { id: Activity["id"] } };
 
 export type ActivityState = {
     activities: Activity[];
     activeID: Activity["id"];
 };
 
+
+const localStorageActivities = () : Activity[] => {
+    const activities = localStorage.getItem("activities")
+    return activities ? JSON.parse(activities) : []
+
+}
+
+
+
 export const inicialState: ActivityState = {
-    activities: [],
+    activities: localStorageActivities(),
     activeID: "",
 };
 
@@ -46,10 +55,12 @@ export const activityReducer = (
     }
 
     if (action.type === "delete-activity") {
-        return { 
+        return {
             ...state,
-            activities: state.activities.filter( activity => activity.id !== action.payload.id)
-        }
+            activities: state.activities.filter(
+                (activity) => activity.id !== action.payload.id
+            ),
+        };
     }
 
     return state;
