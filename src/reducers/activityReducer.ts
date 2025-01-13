@@ -3,7 +3,8 @@ import { Activity } from "../types";
 export type ActivityActions =
     | { type: "save-activity"; payload: { newActivity: Activity } }
     | { type: "set-activeId"; payload: { id: Activity["id"] } }
-    | { type: "delete-activity"; payload: { id: Activity["id"] } };
+    | { type: "delete-activity"; payload: { id: Activity["id"] } }
+    | { type: "restart-app" }
 
 export type ActivityState = {
     activities: Activity[];
@@ -11,13 +12,11 @@ export type ActivityState = {
 };
 
 
-const localStorageActivities = () : Activity[] => {
+const localStorageActivities = (): Activity[] => {
     const activities = localStorage.getItem("activities")
     return activities ? JSON.parse(activities) : []
 
 }
-
-
 
 export const inicialState: ActivityState = {
     activities: localStorageActivities(),
@@ -61,6 +60,13 @@ export const activityReducer = (
                 (activity) => activity.id !== action.payload.id
             ),
         };
+    }
+
+    if (action.type === "restart-app") {
+        return {
+            activities: [],
+            activeId: ''
+        }
     }
 
     return state;

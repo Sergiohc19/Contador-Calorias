@@ -33,7 +33,7 @@ export default function ActivityList({
                 activities.map((activity) => (
                     <div
                         key={activity.id}
-                        className="px-5 py-10 bg-white mt-5 flex justify-between "
+                        className="px-8 py-8 bg-white mt-5 flex justify-between shadow-zinc-300 shadow-md rounded-lg"
                     >
                         <div className=" space-y-2 relative">
                             <p
