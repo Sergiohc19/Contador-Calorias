@@ -1,8 +1,22 @@
-import React from 'react'
+import { Activity } from "../types";
 
-export default function activityReducer() {
-    return (
-        <>
-        </>
-    )
+export type ActivityActions = {
+
+}
+
+type ActivityState = {
+    activities : Activity[]
+}
+
+
+export const inicialState : ActivityState = {
+    activities : []
+}
+ 
+export const activityReducer = (
+    state : ActivityState = inicialState,
+    action : ActivityActions
+) =>  {
+    
+
 }
