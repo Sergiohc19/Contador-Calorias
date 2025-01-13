@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { categories } from "../data/categories";
-import type Activity } from "../types";
+import type { Activity } from "../types";
 
 export default function Form() {
   const [activity, setActivity] = useState<Activity>({
@@ -28,7 +28,7 @@ export default function Form() {
   const hadleSubmit  = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    console.log("Submit...")
+
 
   }
 
