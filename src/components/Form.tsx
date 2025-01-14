@@ -9,40 +9,46 @@ type FormProps = {
   state: ActivityState
 };
 
-const initialState : Activity = {
+const initialState: Activity = {
   id: uuidv4(),
   category: 1,
   name: "",
-  calories: 0,
+  calories: "", // Inicializamos como una cadena vacía
 };
 
 export default function Form({ dispatch, state }: FormProps) {
-
   const [activity, setActivity] = useState<Activity>(initialState);
 
   useEffect(() => {
-    
     if (state.activeID) {
-    const selectActivity = state.activities.filter( stateActivity => 
-      stateActivity.id === state.activeID) [0]
-      setActivity(selectActivity)
+      const selectActivity = state.activities.filter(stateActivity => stateActivity.id === state.activeID)[0];
+      setActivity(selectActivity);
     }
-    
   }, [state.activeID]);
 
   const handleChange = (
     e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>
   ) => {
-    const isNumberField = ["category", "calories"].includes(e.target.id);
+    const { id, value } = e.target;
+
+    const isNumberField = ["category", "calories"].includes(id);
+    const newValue = isNumberField
+      ? id === "calories"
+        ? value === "" // Si el campo de calorías está vacío, lo dejamos como una cadena vacía
+          ? ""
+          : +value
+        : +value
+      : value;
+
     setActivity({
       ...activity,
-      [e.target.id]: isNumberField ? +e.target.value : e.target.value,
+      [id]: newValue,
     });
   };
 
   const isValidActivity = () => {
     const { name, calories } = activity;
-    return name.trim() !== "" && calories > 0;
+    return name.trim() !== "" && calories !== "";
   };
 
   const hadleSubmit = (e: FormEvent<HTMLFormElement>) => {
