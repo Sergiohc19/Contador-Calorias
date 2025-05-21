@@ -1,22 +1,22 @@
-import { useState, ChangeEvent, FormEvent, Dispatch, useEffect } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { categories } from "../data/categories";
 import type { Activity } from "../types";
-import { ActivityActions, ActivityState } from "../reducers/activityReducer";
 
-type FormProps = {
-  dispatch: Dispatch<ActivityActions>,
-  state: ActivityState
-};
+import { useActivity } from "../hooks/useActivity";
+
+
 
 const initialState: Activity = {
   id: uuidv4(),
   category: 1,
   name: "",
-  calories: "", // Inicializamos como una cadena vacía
+  calories: 0, // Inicializamos como una cadena vacía
 };
 
-export default function Form({ dispatch, state }: FormProps) {
+export default function Form() {
+
+  const { state, dispatch  } = useActivity()
   const [activity, setActivity] = useState<Activity>(initialState);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function Form({ dispatch, state }: FormProps) {
 
   const isValidActivity = () => {
     const { name, calories } = activity;
-    return name.trim() !== "" && calories !== "";
+    return name.trim() !== "" && calories !== 0;
   };
 
   const hadleSubmit = (e: FormEvent<HTMLFormElement>) => {

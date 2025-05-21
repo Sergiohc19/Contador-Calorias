@@ -41,7 +41,7 @@ function App() {
 
       <section className="py-12 sm:py-16 px-5 bg-contain bg-center bg-lime-500">
         <div className="max-w-4xl mx-auto">
-          <Form dispatch={dispatch} state={state} />
+          <Form  />
         </div>
       </section>
 
