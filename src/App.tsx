@@ -1,6 +1,6 @@
-import { useReducer, useEffect, useMemo } from "react";
+import {  useEffect, useMemo } from "react";
 import Form from "./components/Form";
-import { activityReducer, initialState } from "./reducers/activityReducer";
+
 import ActivityList from "./components/ActivityList";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import CalorieTracker from "./components/CalorieTracker";
@@ -52,7 +52,7 @@ function App() {
       </section>
 
       <section className="p-5 sm:p-10 mx-auto max-w-4xl">
-        <ActivityList activities={state.activities} dispatch={dispatch} />
+        <ActivityList  />
       </section>
     </>
   );
