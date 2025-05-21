@@ -4,9 +4,13 @@ import { activityReducer, initialState } from "./reducers/activityReducer";
 import ActivityList from "./components/ActivityList";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import CalorieTracker from "./components/CalorieTracker";
+import { useActivity } from "./hooks/useActivity";
 
 function App() {
-  const [state, dispatch] = useReducer(activityReducer, initialState);
+  // const [state, dispatch] = useReducer(activityReducer, initialState);
+
+    const { state, dispatch }  = useActivity()
+
 
   useEffect(() => {
     localStorage.setItem("activities", JSON.stringify(state.activities));
